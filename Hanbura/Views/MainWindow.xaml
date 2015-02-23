@@ -1,0 +1,9 @@
+﻿<Window x:Class="Studiotaiha.Hanbura.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:models="clr-namespace:Studiotaiha.Hanbura.Models"
+		xmlns:prop="clr-namespace:Studiotaiha.Hanbura.Properties"
+        Title="MainWindow" Height="300" Width="300">
+    <Grid>
+	</Grid>
+</Window>
