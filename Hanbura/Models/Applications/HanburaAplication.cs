@@ -13,6 +13,7 @@ using Studiotaiha.Hanbura.Views;
 
 namespace Studiotaiha.Hanbura.Models.Applications
 {
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable")]
 	internal class HanburaAplication : IApplication
 	{
 		Settings settings_;

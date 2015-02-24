@@ -79,6 +79,7 @@ namespace Studiotaiha.Hanbura.Models.Common.Settings
 
 		#region IDisposable メンバ
 		bool isDisposed_ = false;
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "stream_")]
 		virtual protected void Dispose(bool disposing)
 		{
 			if (isDisposed_) { return; }

@@ -148,6 +148,7 @@ namespace Studiotaiha.Hanbura.Models.Common.Settings
 			}
 		}
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:オブジェクトを複数回破棄しない")]
 		public ISettings GetChildSettings(string tag, IEnumerable<Type> knownTypes)
 		{
 			if (settingsChildren_.ContainsKey(tag)) {
@@ -161,7 +162,7 @@ namespace Studiotaiha.Hanbura.Models.Common.Settings
 				var setStr = Get<string>(setTag, null);
 				if (setStr != null) {
 					using (var ms = new MemoryStream())
-					using (var writer = new StreamWriter(ms)) {
+					using (var writer = new StreamWriter(ms, Encoding.UTF8, 2048, true)) {
 						writer.Write(setStr);
 						writer.Flush();
 						ms.Seek(0, SeekOrigin.Begin);
