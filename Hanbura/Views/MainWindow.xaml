@@ -9,12 +9,13 @@
 		xmlns:conv="clr-namespace:Studiotaiha.Hanbura.Views.Converters"
 		xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 		xmlns:behaviors="clr-namespace:Studiotaiha.Hanbura.Views.Behaviors"
+		xmlns:system="clr-namespace:System;assembly=mscorlib"
 		Background="{DynamicResource BackgroundBrushKey}"
 		SizeToContent="WidthAndHeight"
         Title="{Binding Path=Resources.ApplicationName, Source={x:Static models:BindableResource.Current}}"
-		ContentRendered="Window_ContentRendered"
 		StateChanged="Window_StateChanged"
-		Topmost="{Binding Path=WindowSettings.AlwaysOnTop}">
+		Topmost="{Binding Path=WindowSettings.AlwaysOnTop}"
+		Loaded="Window_Loaded">
 	<Window.Resources>
 		<conv:ColorSolidBrushConverter x:Key="ColorSolidBrushConverterKey" />
 		<conv:CaptionMessageKindBrushConverter WarningBrush="{StaticResource CaptionMessageWarningBrushKey}"
@@ -46,6 +47,8 @@
 				<ColumnDefinition Width="*" />
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 			
 			<!--アプリケーションタイトル-->
@@ -63,10 +66,67 @@
 						   HorizontalAlignment="Left"
 						   TextWrapping="NoWrap" />
 			</Border>
-			
-			<!-- 設定ボタン -->
-			<xctk:DropDownButton Grid.Column="2" VerticalAlignment="Center"
+
+			<!-- 表示倍率ボタン -->
+
+			<!-- 表示倍率ボタン -->
+			<xctk:DropDownButton Grid.Column="3" Margin="0,0,2,0"
 								 WindowChrome.IsHitTestVisibleInChrome="True"
+								 x:Name="dropDownButton_Scale"
+								 BorderThickness="0">
+				<xctk:DropDownButton.Content>
+					<TextBlock Text="倍率"
+							   ToolTipService.IsEnabled="{Binding Settings.ShowToolTip, Mode=OneWay}"
+							   ToolTip="{Binding Path=Resources.ToolTip_Scale, Source={x:Static models:BindableResource.Current}}" />
+				</xctk:DropDownButton.Content>
+				<xctk:DropDownButton.DropDownContent>
+					<StackPanel>
+						<!--等倍ボタン-->
+						<Button Content="{Binding Path=Resources.DotByDot, Source={x:Static models:BindableResource.Current}}" 
+								BorderThickness="0"	Click="button_ChangeScale_Click">
+							<Button.Tag>
+								<system:Double>1.00</system:Double>
+							</Button.Tag>
+						</Button>
+						<!--セパレータ-->
+						<Border HorizontalAlignment="Stretch"
+								BorderThickness="1"
+								Height="1"
+								Margin="0,2,0,2"
+								BorderBrush="{DynamicResource BorderBrushKey}" />
+
+						<!-- 倍率一覧 -->
+						<ItemsControl>
+							<ItemsControl.Items>
+								<system:Double>0.50</system:Double>
+								<system:Double>0.75</system:Double>
+								<system:Double>1.00</system:Double>
+								<system:Double>1.25</system:Double>
+								<system:Double>1.50</system:Double>
+								<system:Double>1.75</system:Double>
+								<system:Double>2.00</system:Double>
+							</ItemsControl.Items>
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<Button Content="{Binding}" Tag="{Binding}"	BorderThickness="0"
+											ContentStringFormat="{}{0:P0}" Click="button_ChangeScale_Click"
+											/>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<StackPanel />
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+						</ItemsControl>
+					</StackPanel>
+				</xctk:DropDownButton.DropDownContent>
+			</xctk:DropDownButton>
+
+			<!-- 設定ボタン -->
+			<xctk:DropDownButton Grid.Column="4" VerticalAlignment="Center"
+								 WindowChrome.IsHitTestVisibleInChrome="True"
+								 BorderThickness="0"
 								 Margin="0,0,5,0">
 				<xctk:DropDownButton.Content>
 					<TextBlock Text="設定" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -81,7 +141,7 @@
 			
 
 			<!-- システムボタン -->
-			<components:SystemButtons Grid.Column="3" VerticalAlignment="Center"
+			<components:SystemButtons Grid.Column="5" VerticalAlignment="Center"
 									  WindowChrome.IsHitTestVisibleInChrome="True"
 									  SnapsToDevicePixels="True"/>
 		</Grid>
@@ -94,19 +154,19 @@
 				<!-- 抽出中表示 -->
 				<Grid Background="{Binding Path=Settings.WorkingBackgroundColor, Converter={StaticResource ColorSolidBrushConverterKey}, Mode=OneWay}"
 					  Name="workingBackground_"
-					  Width="800" Height="480">
+					  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 					<TextBlock HorizontalAlignment="Center"
-								   VerticalAlignment="Center"
-								   Text="{Binding ExtractingMessage}"
-								   FontWeight="Bold"
-						   FontSize="30"/>
+							   VerticalAlignment="Center"
+							   Text="{Binding ExtractingMessage}"
+							   FontWeight="Bold"
+							   FontSize="30"/>
 				</Grid>
 				
 				<!-- コンテンツを表示するWebBrowser -->
-				<WebBrowser Width="800" Height="480"
+				<WebBrowser HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
 							Name="webBrowser_"
-							AllowDrop="False"
-					/>
+							AllowDrop="False" />
 			</Grid>
 		</Border>
 	</Grid>

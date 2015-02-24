@@ -97,6 +97,15 @@ namespace Studiotaiha.Hanbura.Properties {
         }
         
         /// <summary>
+        ///   等倍 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DotByDot {
+            get {
+                return ResourceManager.GetString("DotByDot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   例外情報 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ExceptionInformation {
@@ -120,6 +129,15 @@ namespace Studiotaiha.Hanbura.Properties {
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   倍率 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Scale {
+            get {
+                return ResourceManager.GetString("Scale", resourceCulture);
             }
         }
         
@@ -192,6 +210,15 @@ namespace Studiotaiha.Hanbura.Properties {
         public static string Settings_ShowToolTip {
             get {
                 return ResourceManager.GetString("Settings_ShowToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   表示倍率を変更します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ToolTip_Scale {
+            get {
+                return ResourceManager.GetString("ToolTip_Scale", resourceCulture);
             }
         }
         

@@ -129,6 +129,9 @@
   <data name="Dialog" xml:space="preserve">
     <value>ダイアログ</value>
   </data>
+  <data name="DotByDot" xml:space="preserve">
+    <value>等倍</value>
+  </data>
   <data name="ExceptionInformation" xml:space="preserve">
     <value>例外情報</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>倍率</value>
   </data>
   <data name="Settings_AlwaysOnTop" xml:space="preserve">
     <value>常に手前に表示する</value>
@@ -161,6 +167,9 @@
   </data>
   <data name="Settings_ShowToolTip" xml:space="preserve">
     <value>操作のヒントを表示する</value>
+  </data>
+  <data name="ToolTip_Scale" xml:space="preserve">
+    <value>表示倍率を変更します。</value>
   </data>
   <data name="ToolTip_Settings_AlwaysOnTop" xml:space="preserve">
     <value>ウィンドウを常に手前に表示します。</value>

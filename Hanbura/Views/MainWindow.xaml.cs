@@ -19,14 +19,39 @@ namespace Studiotaiha.Hanbura.Views
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+
+
+		public double ContentWidth
+		{
+			get { return (double)GetValue(ContentWidthProperty); }
+			set { SetValue(ContentWidthProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for ContentWidth.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty ContentWidthProperty =
+			DependencyProperty.Register("ContentWidth", typeof(double), typeof(MainWindow), new PropertyMetadata(800.0));
+
+
+
+		public double ContentHeight
+		{
+			get { return (double)GetValue(ContentHeightProperty); }
+			set { SetValue(ContentHeightProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for ContentHeight.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty ContentHeightProperty =
+			DependencyProperty.Register("ContentHeight", typeof(double), typeof(MainWindow), new PropertyMetadata(480.0));
+
+
 		public MainWindow()
 		{
 			InitializeComponent();
 		}
 
-		private void Window_ContentRendered(object sender, EventArgs e)
+		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			AdjustWindowByWebBrowserSize(webBrowser_.Width, webBrowser_.Height);
+			AdjustWindowByWebBrowserSize(ContentWidth, ContentHeight);
 		}
 
 		void AdjustWindowByWebBrowserSize(double width, double height)
@@ -39,21 +64,21 @@ namespace Studiotaiha.Hanbura.Views
 			ResizeMode = System.Windows.ResizeMode.NoResize;
 
 			// コントロールに合わせてウィンドウを変形
-			SizeToContent = System.Windows.SizeToContent.WidthAndHeight;
-			Width = double.NaN;
-			Height = double.NaN;
 			foreach (var control in controls) {
 				control.Width = width;
 				control.Height = height;
 				control.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 				control.VerticalAlignment = System.Windows.VerticalAlignment.Top;
 			}
+			Width = double.NaN;
+			Height = double.NaN;
+			SizeToContent = System.Windows.SizeToContent.WidthAndHeight;
 
 			Dispatcher.BeginInvoke((Action)(() => {
 				// ウィンドウにあわせてコントロールを変形
+				SizeToContent = System.Windows.SizeToContent.Manual;
 				Width = ActualWidth;
 				Height = ActualHeight;
-				SizeToContent = System.Windows.SizeToContent.Manual;
 				foreach (var control in controls) {
 					control.Width = double.NaN;
 					control.Height = double.NaN;
@@ -79,6 +104,29 @@ namespace Studiotaiha.Hanbura.Views
 				panelMain_.Margin = new Thickness(0.0);
 				webBrowserWrap_.Padding = new Thickness(2.0, 0.0, 2.0, 2.0);
 			}
+		}
+
+		/// <summary>
+		/// 表示倍率変更ボタンクリック時処理
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void button_ChangeScale_Click(object sender, RoutedEventArgs e)
+		{
+			try {
+				var button = sender as Button;
+				if (button != null && button.Tag != null) {
+					double scale = (double)button.Tag;
+						var width = ContentWidth * scale;
+						var height = ContentHeight * scale;
+						AdjustWindowByWebBrowserSize(width, height);
+				}
+			}
+			catch (Exception ex) {
+				AlertService.Current.AlertManager.ShowErrorMessage("表示倍率の変更に失敗しました。", ex);
+			}
+
+			dropDownButton_Scale.IsOpen = false;
 		}
 	}
 }

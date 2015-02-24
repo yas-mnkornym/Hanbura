@@ -12,6 +12,7 @@
 	<SolidColorBrush x:Key="ForegroundBrushKey" Color="{DynamicResource ResourceKey=ForegroundColorKey}" />
 	<SolidColorBrush x:Key="DisabledForegroundBrushKey" Color="#AAAAAA" />
 	<SolidColorBrush x:Key="AccentBrushKey" Color="Gray" />
+	<SolidColorBrush x:Key="BorderBrushKey" Color="White" />
 	
 	<!-- Brushes for MainWindow -->
 	<SolidColorBrush x:Key="CaptionMessageWarningBrushKey" Color="DarkRed" />
