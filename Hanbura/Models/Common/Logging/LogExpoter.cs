@@ -6,10 +6,12 @@ using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Studiotaiha.Hanbura.Models.Logging
+namespace Studiotaiha.Hanbura.Models.Common.Logging
 {
 	internal class LogExpoter : IDisposable
 	{
+		static readonly string StartTag = "*Start";
+		static readonly string EndTag = "*End";
 		CompositeDisposable disposables_ = new CompositeDisposable();
 		StreamWriter writer_;
 
@@ -23,7 +25,7 @@ namespace Studiotaiha.Hanbura.Models.Logging
 			// ライター初期化
 			writer_ = new StreamWriter(fileName, true, Encoding.UTF8, 2048);
 			writer_.AutoFlush = true;
-			writer_.WriteLine("Start");
+			writer_.WriteLine(StartTag);
 
 			// ログイベントをサブスクライブ
 			disposables_.Add(logger.LogSubject.Subscribe(OnLogged));
@@ -70,7 +72,7 @@ namespace Studiotaiha.Hanbura.Models.Logging
 			if (isDisposed_) { return; }
 			if (disposing) {
 				if(writer_ != null){
-					writer_.WriteLine("End");
+					writer_.WriteLine(EndTag);
 					writer_.Dispose();
 				}
 

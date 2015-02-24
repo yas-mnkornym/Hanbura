@@ -7,7 +7,7 @@ using Studiotaiha.Hanbura.Properties;
 using Studiotaiha.Hanbura.ViewModels.Alerts;
 using Studiotaiha.Hanbura.Views.Alerts;
 
-namespace Studiotaiha.Hanbura.Models.Alert
+namespace Studiotaiha.Hanbura.Models.Common.Alert
 {
 	internal class AlertManager : Dispatchable, IAlertManager
 	{

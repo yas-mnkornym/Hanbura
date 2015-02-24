@@ -8,9 +8,9 @@ using System.Reactive.Disposables;
 using System.Threading.Tasks;
 using System.Windows;
 using CommandLine;
-using Studiotaiha.Hanbura.Models.Alert;
+using Studiotaiha.Hanbura.Models.Common.Alert;
 using Studiotaiha.Hanbura.Models.Applications;
-using Studiotaiha.Hanbura.Models.Logging;
+using Studiotaiha.Hanbura.Models.Common.Logging;
 
 namespace Studiotaiha.Hanbura
 {
@@ -56,7 +56,7 @@ namespace Studiotaiha.Hanbura
 			
 			// コマンドライン引数解析
 			logger_.Information("コマンドライン引数を解析します。");
-			logger_.VerboseFormat("スタートアップ引数:{0}", string.Join(",", e.Args));
+			logger_.VerboseFormat("スタートアップ引数:{0}", new object[] { string.Join(",", e.Args) });
 
 			var options = new StartupOptions();
 			var parser = new Parser(settings => {
@@ -89,9 +89,9 @@ namespace Studiotaiha.Hanbura
 
 		protected override void OnExit(ExitEventArgs e)
 		{
-			logger_.InformationFormat("アプリケーションを終了します。(Code:{0})", e.ApplicationExitCode);
+			logger_.InformationFormat("アプリケーションを終了します。(Code:{0})", new object[]{e.ApplicationExitCode});
 			if (application_ != null) {
-				application_.OnShutdown(this);
+				application_.OnShutdown(this, logger_);
 				application_ = null;
 			}
 			logger_.Information("アプリケーションの終了処理完了");

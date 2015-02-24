@@ -4,8 +4,75 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="300" d:DesignWidth="300"
+			 Loaded="UserControl_Loaded">
+	<UserControl.Resources>
+		<Style x:Key="CaptionButtonStyleKey" TargetType="{x:Type Button}">
+			<Setter Property="OverridesDefaultStyle" Value="False" />
+			<Setter Property="Foreground" Value="Black" />
+			<Setter Property="FontFamily" Value="Marlett"/>
+			<Setter Property="IsTabStop" Value="False"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="Margin" Value="2" />
+			<Setter Property="Padding" Value="1" />
+			<Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Border x:Name="border" Background="Transparent" SnapsToDevicePixels="True">
+							<Border.Effect>
+								<DropShadowEffect Opacity="0"/>
+							</Border.Effect>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal">
+										<Storyboard>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border">
+												<EasingDoubleKeyFrame KeyTime="0" Value="0.6"/>
+											</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="MouseOver">
+										<Storyboard>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border">
+												<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+											</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border">
+												<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+											</DoubleAnimationUsingKeyFrames>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)" Storyboard.TargetName="border">
+												<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+											</DoubleAnimationUsingKeyFrames>
+											<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Color)" Storyboard.TargetName="border">
+												<EasingColorKeyFrame KeyTime="0" Value="White"/>
+											</ColorAnimationUsingKeyFrames>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)" Storyboard.TargetName="border">
+												<EasingDoubleKeyFrame KeyTime="0" Value="0.6"/>
+											</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled"/>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<ContentPresenter x:Name="contentPresenter" Focusable="False" Margin="{TemplateBinding Padding}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+		</Style>
+	</UserControl.Resources>
+	<StackPanel Orientation="Horizontal" Name="panel_BaseButtons">
+		<Button Content="0" Style="{DynamicResource CaptionButtonStyleKey}" Name="button_Minimize" Click="button_Minimize_Click"/>
+		<Button Content="1" Style="{DynamicResource CaptionButtonStyleKey}" Name="button_Maximize" Click="button_Maximize_Click" />
+		<Button Content="2" Style="{DynamicResource CaptionButtonStyleKey}" Name="button_Restore" Click="button_Restore_Click"/>
+		<Button Content="r" Style="{DynamicResource CaptionButtonStyleKey}" Name="button_Close" Click="button_Close_Click"/>
+	</StackPanel>
 </UserControl>

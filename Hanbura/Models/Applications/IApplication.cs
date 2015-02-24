@@ -14,7 +14,7 @@ namespace Studiotaiha.Hanbura.Models.Applications
 			IAlertManager alertManager,
 			ILogger logger);
 
-		void OnShutdown(App app);
+		void OnShutdown(App app, ILogger logger);
 
 	}
 	 

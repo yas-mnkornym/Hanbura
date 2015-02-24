@@ -3,7 +3,98 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:models="clr-namespace:Studiotaiha.Hanbura.Models"
 		xmlns:prop="clr-namespace:Studiotaiha.Hanbura.Properties"
-        Title="MainWindow" Height="300" Width="300">
-    <Grid>
+		xmlns:components="clr-namespace:Studiotaiha.Hanbura.Views.Components"
+		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+		xmlns:views="clr-namespace:Studiotaiha.Hanbura.Views"
+		xmlns:conv="clr-namespace:Studiotaiha.Hanbura.Views.Converters"
+		Background="{DynamicResource BackgroundBrushKey}"
+		SizeToContent="WidthAndHeight"
+        Title="{Binding Path=Resources.ApplicationName, Source={x:Static models:BindableResource.Current}}"
+		ContentRendered="Window_ContentRendered"
+		StateChanged="Window_StateChanged">
+	<Window.Resources>
+		<conv:ColorSolidBrushConverter x:Key="ColorSolidBrushConverter" />
+	</Window.Resources>
+	<WindowChrome.WindowChrome>
+		<WindowChrome CaptionHeight="{x:Static SystemParameters.CaptionHeight}"
+					  ResizeBorderThickness="2"
+					  GlassFrameThickness="0"
+					  CornerRadius="0"
+					  x:Name="windowChrome_"/>
+	</WindowChrome.WindowChrome>
+	
+	<Grid x:Name="panelMain_">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		
+		<!--キャプション-->
+		<Grid Grid.Row="0" Height="{x:Static SystemParameters.CaptionHeight}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+			
+			<!--アプリケーションタイトル-->
+			<TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="2,0,0,0"
+					   Text="{Binding Path=Resources.ApplicationName, Source={x:Static models:BindableResource.Current}}" />
+			
+			<!-- メッセージ -->
+			<Border Grid.Row="1"
+					Margin="5,0,5,0"
+					VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+					Background="{Binding Path=NotificationBackground}">
+				<TextBlock Text="{Binding Path=NotificationMessage}"
+						   VerticalAlignment="Center"
+						   HorizontalAlignment="Left"
+						   TextWrapping="NoWrap" />
+			</Border>
+			
+			<!-- 設定ボタン -->
+			<xctk:DropDownButton Grid.Column="2" VerticalAlignment="Center"
+								 WindowChrome.IsHitTestVisibleInChrome="True"
+								 Margin="0,0,5,0">
+				<xctk:DropDownButton.Content>
+					<TextBlock Text="設定" VerticalAlignment="Center" HorizontalAlignment="Center" />
+				</xctk:DropDownButton.Content>
+				
+				<xctk:DropDownButton.DropDownContent>
+					<views:SettingsControl />
+				</xctk:DropDownButton.DropDownContent>
+			</xctk:DropDownButton>
+			
+
+			<!-- システムボタン -->
+			<components:SystemButtons Grid.Column="3" VerticalAlignment="Center"
+									  WindowChrome.IsHitTestVisibleInChrome="True"
+									  SnapsToDevicePixels="True"/>
+		</Grid>
+
+
+		<!--本体-->
+		<Border Grid.Row="1" Padding="2,0,2,2" x:Name="webBrowserWrap_">
+			<Grid>
+				
+				<!-- 抽出中表示 -->
+				<Grid Background="{Binding Path=Settings.WorkingBackgroundColor, Converter={StaticResource ColorSolidBrushConverter}, Mode=OneWay}"
+					  Name="workingBackground_"
+					  Width="800" Height="480">
+					<TextBlock HorizontalAlignment="Center"
+								   VerticalAlignment="Center"
+								   Text="{Binding ExtractingMessage}"
+								   FontWeight="Bold"
+						   FontSize="30"/>
+				</Grid>
+				
+				<!-- コンテンツを表示するWebBrowser -->
+				<WebBrowser Width="800" Height="480"
+							Name="webBrowser_"
+							AllowDrop="False"
+					/>
+			</Grid>
+		</Border>
 	</Grid>
 </Window>

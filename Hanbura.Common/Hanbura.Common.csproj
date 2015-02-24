@@ -50,6 +50,9 @@
     <Compile Include="Alert\IAlertStringProvider.cs" />
     <Compile Include="Alert\IDialogCallback.cs" />
     <Compile Include="Alert\IDialogConfig.cs" />
+    <Compile Include="Settings\ISettings.cs" />
+    <Compile Include="Settings\SettingChangeEventArgs.cs" />
+    <Compile Include="Settings\SettingsBase.cs" />
     <Compile Include="WPF\BindableBase.cs" />
     <Compile Include="WPF\DelegateCommand.cs" />
     <Compile Include="WPF\Dispatchable.cs" />
@@ -59,13 +62,11 @@
     <Compile Include="Logging\LoggerExt.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\LogData.cs" />
-    <Compile Include="WPF\NotifyPropertyChangedBase.cs" />
+    <Compile Include="WPF\NotificationObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WPF\WPFDispatcher.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

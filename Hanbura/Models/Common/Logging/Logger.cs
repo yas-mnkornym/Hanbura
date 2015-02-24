@@ -5,7 +5,7 @@ using System.Reactive.Subjects;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Studiotaiha.Hanbura.Models.Logging
+namespace Studiotaiha.Hanbura.Models.Common.Logging
 {
 	internal sealed class Logger : ILogger, IDisposable
 	{

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Studiotaiha.Hanbura.Models.Alert
+namespace Studiotaiha.Hanbura.Models.Common.Alert
 {
 	internal sealed class DialogConfig : IDialogConfig
 	{

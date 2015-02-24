@@ -13,7 +13,7 @@ namespace Studiotaiha.Hanbura.Models.Applications
 			throw new NotImplementedException();
 		}
 
-		public void OnShutdown(App app)
+		public void OnShutdown(App app, ILogger logger)
 		{
 			throw new NotImplementedException();
 		}

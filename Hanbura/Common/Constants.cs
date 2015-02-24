@@ -11,5 +11,6 @@ namespace Studiotaiha.Hanbura
 		public static readonly string LogFileName = "Hanbura.log";
 
 		public static readonly string SettingsFileName = "Hanbura.xml";
+		public static readonly string SettingsTempFileName = "Hanbura.xml.tmp";
 	}
 }

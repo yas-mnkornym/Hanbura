@@ -69,6 +69,7 @@
     <Reference Include="System.Reactive.PlatformServices">
       <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
@@ -82,6 +83,24 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.3\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.3\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.3\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.3\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.3\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.3\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -95,15 +114,21 @@
     <Compile Include="Common\AppInfo.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\LoggingService.cs" />
-    <Compile Include="Models\Alert\AlertManager.cs" />
-    <Compile Include="Models\Alert\DialogConfig.cs" />
+    <Compile Include="Models\Common\Alert\AlertManager.cs" />
+    <Compile Include="Models\Common\Alert\DialogConfig.cs" />
     <Compile Include="Models\Applications\HanburaAplication.cs" />
     <Compile Include="Models\Applications\IApplication.cs" />
     <Compile Include="Models\Applications\StartupOptions.cs" />
     <Compile Include="Models\Applications\UpdaterApplication.cs" />
-    <Compile Include="Models\Logging\LogExpoter.cs" />
-    <Compile Include="Models\Logging\Logger.cs" />
+    <Compile Include="Models\Common\Logging\LogExpoter.cs" />
+    <Compile Include="Models\Common\Logging\Logger.cs" />
     <Compile Include="Models\BindableResource.cs" />
+    <Compile Include="Models\Common\Settings\DataContractSettingsSerializer.cs" />
+    <Compile Include="Models\Common\Settings\ISettingsSerializer.cs" />
+    <Compile Include="Models\Common\Settings\SettingsAutoExpoter.cs" />
+    <Compile Include="Models\Settings.cs" />
+    <Compile Include="Models\Common\Settings\SettingsImpl.cs" />
+    <Compile Include="Models\WindowSettings.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\Alerts\AlertWindowViewModelBase.cs" />
     <Compile Include="ViewModels\Alerts\ContentAlertWindowViewModel.cs" />
@@ -120,9 +145,13 @@
     </Compile>
     <Compile Include="Views\Converters\AlertTypeBrushConverter.cs" />
     <Compile Include="Views\Converters\AlertTypeIconConverter.cs" />
+    <Compile Include="Views\Converters\ColorSolidBrushConverter.cs" />
     <Compile Include="Views\Converters\NullVisibilityConverter.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsControl.xaml.cs">
+      <DependentUpon>SettingsControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +200,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Styles\xctk\ButtonChromeStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\xctk\DropDownButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\xctk\xctk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Alerts\AlertWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -184,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

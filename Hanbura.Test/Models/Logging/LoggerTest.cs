@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Studiotaiha.Hanbura.Models.Logging;
+using Studiotaiha.Hanbura.Models.Common.Logging;
 
 namespace Studiotaiha.Hanbura.Test.Models.Logging
 {
