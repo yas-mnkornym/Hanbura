@@ -115,6 +115,7 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\LoggingService.cs" />
     <Compile Include="Models\Common\Alert\AlertManager.cs" />
+    <Compile Include="Models\Common\Alert\CaptionMessageChangedEventArgs.cs" />
     <Compile Include="Models\Common\Alert\DialogConfig.cs" />
     <Compile Include="Models\Applications\HanburaAplication.cs" />
     <Compile Include="Models\Applications\IApplication.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="ViewModels\Alerts\AlertWindowViewModelBase.cs" />
     <Compile Include="ViewModels\Alerts\ContentAlertWindowViewModel.cs" />
     <Compile Include="ViewModels\Alerts\StringAlertWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\Alerts\AlertWindow.xaml.cs">
       <DependentUpon>AlertWindow.xaml</DependentUpon>
     </Compile>
@@ -145,6 +147,7 @@
     </Compile>
     <Compile Include="Views\Converters\AlertTypeBrushConverter.cs" />
     <Compile Include="Views\Converters\AlertTypeIconConverter.cs" />
+    <Compile Include="Views\Converters\CaptionMessageKindBrushConverter.cs" />
     <Compile Include="Views\Converters\ColorSolidBrushConverter.cs" />
     <Compile Include="Views\Converters\NullVisibilityConverter.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

@@ -12,9 +12,13 @@
 	<SolidColorBrush x:Key="ForegroundBrushKey" Color="{DynamicResource ResourceKey=ForegroundColorKey}" />
 	<SolidColorBrush x:Key="DisabledForegroundBrushKey" Color="#AAAAAA" />
 	<SolidColorBrush x:Key="AccentBrushKey" Color="Gray" />
+	
+	<!-- Brushes for MainWindow -->
+	<SolidColorBrush x:Key="CaptionMessageWarningBrushKey" Color="DarkRed" />
+	<SolidColorBrush x:Key="CaptionMessageInformationBrushKey" Color="DarkBlue" />
 
 
-	<!-- Brushes for Button -->
+	<!-- Brushes for Buttons -->
 	<SolidColorBrush x:Key="ButtonBorderBrushKey" Color="White" />
 
 	<!-- Brushes for AlertWindow -->

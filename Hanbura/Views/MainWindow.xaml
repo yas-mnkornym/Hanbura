@@ -13,7 +13,9 @@
 		ContentRendered="Window_ContentRendered"
 		StateChanged="Window_StateChanged">
 	<Window.Resources>
-		<conv:ColorSolidBrushConverter x:Key="ColorSolidBrushConverter" />
+		<conv:ColorSolidBrushConverter x:Key="ColorSolidBrushConverterKey" />
+		<conv:CaptionMessageKindBrushConverter WarningBrush="{StaticResource CaptionMessageWarningBrushKey}"
+											   x:Key="CaptionMessageKindBrushConverterKey" />
 	</Window.Resources>
 	<WindowChrome.WindowChrome>
 		<WindowChrome CaptionHeight="{x:Static SystemParameters.CaptionHeight}"
@@ -43,11 +45,12 @@
 					   Text="{Binding Path=Resources.ApplicationName, Source={x:Static models:BindableResource.Current}}" />
 			
 			<!-- メッセージ -->
-			<Border Grid.Row="1"
-					Margin="5,0,5,0"
+			<Border Grid.Column="1"
+					Margin="2,0,2,0"
+					Padding="2,0,2,0"
 					VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-					Background="{Binding Path=NotificationBackground}">
-				<TextBlock Text="{Binding Path=NotificationMessage}"
+					Background="{Binding Path=CaptionMessageKind, Converter={StaticResource CaptionMessageKindBrushConverterKey}}">
+				<TextBlock Text="{Binding Path=CaptionMessage}"
 						   VerticalAlignment="Center"
 						   HorizontalAlignment="Left"
 						   TextWrapping="NoWrap" />
@@ -79,7 +82,7 @@
 			<Grid>
 				
 				<!-- 抽出中表示 -->
-				<Grid Background="{Binding Path=Settings.WorkingBackgroundColor, Converter={StaticResource ColorSolidBrushConverter}, Mode=OneWay}"
+				<Grid Background="{Binding Path=Settings.WorkingBackgroundColor, Converter={StaticResource ColorSolidBrushConverterKey}, Mode=OneWay}"
 					  Name="workingBackground_"
 					  Width="800" Height="480">
 					<TextBlock HorizontalAlignment="Center"

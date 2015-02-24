@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,18 @@ namespace Studiotaiha.Hanbura
 				});
 			}
 		}
+
+		/// <summary>
+		/// 式からメンバ名を取得する。
+		/// </summary>
+		/// <typeparam name="MemberType">メンバの型</typeparam>
+		/// <param name="expression">式</param>
+		/// <returns>メンバ名</returns>
+		public string GetMemberName<MemberType>(Expression<Func<MemberType>> expression)
+		{
+			return ((MemberExpression)expression.Body).Member.Name;
+		}
+
 
 		public event PropertyChangedEventHandler PropertyChanged;
 

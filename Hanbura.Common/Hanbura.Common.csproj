@@ -50,6 +50,7 @@
     <Compile Include="Alert\IAlertStringProvider.cs" />
     <Compile Include="Alert\IDialogCallback.cs" />
     <Compile Include="Alert\IDialogConfig.cs" />
+    <Compile Include="Alert\CaptionMessageKind.cs" />
     <Compile Include="Settings\ISettings.cs" />
     <Compile Include="Settings\SettingChangeEventArgs.cs" />
     <Compile Include="Settings\SettingsBase.cs" />

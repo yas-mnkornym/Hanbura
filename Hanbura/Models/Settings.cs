@@ -32,6 +32,22 @@ namespace Studiotaiha.Hanbura.Models
 				SetMe(value);
 			}
 		}
+
+		/// <summary>
+		/// キャプションバーのメッセージを削除するまでの時間
+		/// </summary>
+		public int CaptionMessageClearDelay
+		{
+			get
+			{
+				return GetMe(30);
+			}
+			set
+			{
+				if (value < 0) { throw new ArgumentOutOfRangeException("CaptionMessageClearDelay", "CaptionMessageClearDelay must be >= 0"); }
+				SetMe(value);
+			}
+		}
 		#endregion 
 
 		#region ウィンドウ設定

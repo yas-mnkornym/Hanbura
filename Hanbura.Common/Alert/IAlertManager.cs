@@ -68,6 +68,16 @@ namespace Studiotaiha.Hanbura
 			EAlertType alertType,
 			Action<string> onResult,
 			params string[] selections);
+
+		/// <summary>
+		/// キャプションバーに表示されるメッセージを設定する
+		/// </summary>
+		/// <param name="message">メッセージ</param>
+		/// <param name="kind">メッセージの種別</param>
+		/// <remarks>改行は無視される。</remarks>
+		 void SetCaptionMessage(
+			 string message,
+			 CaptionMessageKind kind = CaptionMessageKind.None);
 	}
 
 	/// <summary>

@@ -150,5 +150,14 @@ namespace Studiotaiha.Hanbura.Models.Common.Alert
 				window.Show();
 			});
 		}
+
+		public void SetCaptionMessage(string message, CaptionMessageKind kind = CaptionMessageKind.Information)
+		{
+			if (CaptionMessageChanged != null) {
+				CaptionMessageChanged(this, new CaptionMessageChangedEventArgs(message, kind));
+			}
+		}
+
+		public event EventHandler<CaptionMessageChangedEventArgs> CaptionMessageChanged;
 	}
 }
