@@ -33,27 +33,37 @@ namespace Studiotaiha.Hanbura.Views
 		{
 			var controls = new FrameworkElement[]{ webBrowser_, workingBackground_};
 
+			var oldWindowStyle = WindowStyle;
+			WindowStyle = System.Windows.WindowStyle.None;
+			var oldResizeMode = ResizeMode;
+			ResizeMode = System.Windows.ResizeMode.NoResize;
+
 			// コントロールに合わせてウィンドウを変形
+			SizeToContent = System.Windows.SizeToContent.WidthAndHeight;
+			Width = double.NaN;
+			Height = double.NaN;
 			foreach (var control in controls) {
 				control.Width = width;
 				control.Height = height;
 				control.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 				control.VerticalAlignment = System.Windows.VerticalAlignment.Top;
 			}
-			Width = double.NaN;
-			Height = double.NaN;
-			SizeToContent = System.Windows.SizeToContent.WidthAndHeight;
 
-			// ウィンドウにあわせてコントロールを変形
-			Width = ActualWidth;
-			Height = ActualHeight;
-			SizeToContent = System.Windows.SizeToContent.Manual;
-			foreach (var control in controls) {
-				control.Width = double.NaN;
-				control.Height = double.NaN;
-				control.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-				control.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-			}
+			Dispatcher.BeginInvoke((Action)(() => {
+				// ウィンドウにあわせてコントロールを変形
+				Width = ActualWidth;
+				Height = ActualHeight;
+				SizeToContent = System.Windows.SizeToContent.Manual;
+				foreach (var control in controls) {
+					control.Width = double.NaN;
+					control.Height = double.NaN;
+					control.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+					control.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+				}
+
+				WindowStyle = oldWindowStyle;
+				ResizeMode = oldResizeMode;
+			}), System.Windows.Threading.DispatcherPriority.Loaded);
 		}
 
 		private void Window_StateChanged(object sender, EventArgs e)

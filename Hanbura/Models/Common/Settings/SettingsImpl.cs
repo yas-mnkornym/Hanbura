@@ -177,9 +177,28 @@ namespace Studiotaiha.Hanbura.Models.Common.Settings
 			}
 		}
 
+		/// <summary>
+		/// 子設定が変更されたとき、その値を保存
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		void settings_SettingChanged(object sender, SettingChangeEventArgs e)
 		{
-			throw new NotImplementedException();
+			var settings = sender as SettingsImpl;
+			if (settings != null) {
+				var tag = GetTaggedKey(settings.Tag, true);
+				string str = null;
+				using (var ms = new MemoryStream()) {
+					childSettingsSerializer_.Serialize(ms, settings);
+					ms.Seek(0, SeekOrigin.Begin);
+					using (var reader = new StreamReader(ms)) {
+						str = reader.ReadToEnd();
+					}
+				}
+
+				// 設定保存
+				Set(tag, str);
+			}
 		}
 
 		public void RemoveChildSettings(string tag)

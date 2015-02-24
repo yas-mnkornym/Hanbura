@@ -138,6 +138,54 @@
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="Settings_AlwaysOnTop" xml:space="preserve">
+    <value>常に手前に表示する</value>
+  </data>
+  <data name="Settings_CheckForUpdateAutomatically" xml:space="preserve">
+    <value>アップデートを自動で確認する</value>
+  </data>
+  <data name="Settings_ConfirmShutdown" xml:space="preserve">
+    <value>終了時に確認する</value>
+  </data>
+  <data name="Settings_EnableChildWindowsTracking" xml:space="preserve">
+    <value>子ウィンドウの追従を有効にする</value>
+  </data>
+  <data name="Settings_PreventChildWindowsOutOfScreen" xml:space="preserve">
+    <value>子ウィンドウが画面外にでないようにする</value>
+  </data>
+  <data name="Settings_RestorePosition" xml:space="preserve">
+    <value>前回終了時の位置を記憶する</value>
+  </data>
+  <data name="Settings_RestoreSize" xml:space="preserve">
+    <value>前回終了時のサイズを復元する</value>
+  </data>
+  <data name="Settings_ShowToolTip" xml:space="preserve">
+    <value>操作のヒントを表示する</value>
+  </data>
+  <data name="ToolTip_Settings_AlwaysOnTop" xml:space="preserve">
+    <value>ウィンドウを常に手前に表示します。</value>
+  </data>
+  <data name="ToolTip_Settings_CheckForUpdateAutomatically" xml:space="preserve">
+    <value>汎ブラ起動時にアップデートの有無を自動で確認します。</value>
+  </data>
+  <data name="ToolTip_Settings_ConfirmShutdown" xml:space="preserve">
+    <value>汎ブラの終了時に確認ダイアログを表示します。</value>
+  </data>
+  <data name="ToolTip_Settings_EnableChildWindowsTracking" xml:space="preserve">
+    <value>メインウィンドウを動かしたとき、子ウィンドウがそれに追従して動きます。</value>
+  </data>
+  <data name="ToolTip_Settings_PreventChildWindowsOutOfScreen" xml:space="preserve">
+    <value>子ウィンドウが画面の外に移動して操作ができなくなることを防ぎます。</value>
+  </data>
+  <data name="ToolTip_Settings_RestorePosition" xml:space="preserve">
+    <value>起動時に、前回終了時のウィンドウ位置を復元します。</value>
+  </data>
+  <data name="ToolTip_Settings_RestoreSize" xml:space="preserve">
+    <value>起動時に、前回終了時のウィンドウサイズを復元します。</value>
+  </data>
+  <data name="ToolTip_Settings_ShowToolTip" xml:space="preserve">
+    <value>ボタンなどにマウスを載せたとき操作のヒントを表示します。</value>
+  </data>
   <data name="Yes" xml:space="preserve">
     <value>はい</value>
   </data>

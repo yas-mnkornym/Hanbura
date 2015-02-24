@@ -7,16 +7,24 @@
 		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 		xmlns:views="clr-namespace:Studiotaiha.Hanbura.Views"
 		xmlns:conv="clr-namespace:Studiotaiha.Hanbura.Views.Converters"
+		xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+		xmlns:behaviors="clr-namespace:Studiotaiha.Hanbura.Views.Behaviors"
 		Background="{DynamicResource BackgroundBrushKey}"
 		SizeToContent="WidthAndHeight"
         Title="{Binding Path=Resources.ApplicationName, Source={x:Static models:BindableResource.Current}}"
 		ContentRendered="Window_ContentRendered"
-		StateChanged="Window_StateChanged">
+		StateChanged="Window_StateChanged"
+		Topmost="{Binding Path=WindowSettings.AlwaysOnTop}">
 	<Window.Resources>
 		<conv:ColorSolidBrushConverter x:Key="ColorSolidBrushConverterKey" />
 		<conv:CaptionMessageKindBrushConverter WarningBrush="{StaticResource CaptionMessageWarningBrushKey}"
 											   x:Key="CaptionMessageKindBrushConverterKey" />
 	</Window.Resources>
+	
+	<i:Interaction.Behaviors>
+		<behaviors:SaveWindowSettingsBehavior Settings="{Binding Path=WindowSettings, Mode=OneWay}"/>
+	</i:Interaction.Behaviors>
+	
 	<WindowChrome.WindowChrome>
 		<WindowChrome CaptionHeight="{x:Static SystemParameters.CaptionHeight}"
 					  ResizeBorderThickness="2"
@@ -65,7 +73,9 @@
 				</xctk:DropDownButton.Content>
 				
 				<xctk:DropDownButton.DropDownContent>
-					<views:SettingsControl />
+					<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Padding="2">
+						<views:SettingsControl DataContext="{Binding Path=SettingsControlVm}" />
+					</ScrollViewer>
 				</xctk:DropDownButton.DropDownContent>
 			</xctk:DropDownButton>
 			

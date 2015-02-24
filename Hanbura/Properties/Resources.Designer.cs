@@ -124,6 +124,150 @@ namespace Studiotaiha.Hanbura.Properties {
         }
         
         /// <summary>
+        ///   常に手前に表示する に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings_AlwaysOnTop {
+            get {
+                return ResourceManager.GetString("Settings_AlwaysOnTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   アップデートを自動で確認する に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings_CheckForUpdateAutomatically {
+            get {
+                return ResourceManager.GetString("Settings_CheckForUpdateAutomatically", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   終了時に確認する に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings_ConfirmShutdown {
+            get {
+                return ResourceManager.GetString("Settings_ConfirmShutdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   子ウィンドウの追従を有効にする に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings_EnableChildWindowsTracking {
+            get {
+                return ResourceManager.GetString("Settings_EnableChildWindowsTracking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   子ウィンドウが画面外にでないようにする に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings_PreventChildWindowsOutOfScreen {
+            get {
+                return ResourceManager.GetString("Settings_PreventChildWindowsOutOfScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   前回終了時の位置を記憶する に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings_RestorePosition {
+            get {
+                return ResourceManager.GetString("Settings_RestorePosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   前回終了時のサイズを復元する に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings_RestoreSize {
+            get {
+                return ResourceManager.GetString("Settings_RestoreSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   操作のヒントを表示する に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings_ShowToolTip {
+            get {
+                return ResourceManager.GetString("Settings_ShowToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ウィンドウを常に手前に表示します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ToolTip_Settings_AlwaysOnTop {
+            get {
+                return ResourceManager.GetString("ToolTip_Settings_AlwaysOnTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   汎ブラ起動時にアップデートの有無を自動で確認します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ToolTip_Settings_CheckForUpdateAutomatically {
+            get {
+                return ResourceManager.GetString("ToolTip_Settings_CheckForUpdateAutomatically", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   汎ブラの終了時に確認ダイアログを表示します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ToolTip_Settings_ConfirmShutdown {
+            get {
+                return ResourceManager.GetString("ToolTip_Settings_ConfirmShutdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   メインウィンドウを動かしたとき、子ウィンドウがそれに追従して動きます。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ToolTip_Settings_EnableChildWindowsTracking {
+            get {
+                return ResourceManager.GetString("ToolTip_Settings_EnableChildWindowsTracking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   子ウィンドウが画面の外に移動して操作ができなくなることを防ぎます。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ToolTip_Settings_PreventChildWindowsOutOfScreen {
+            get {
+                return ResourceManager.GetString("ToolTip_Settings_PreventChildWindowsOutOfScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   起動時に、前回終了時のウィンドウ位置を復元します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ToolTip_Settings_RestorePosition {
+            get {
+                return ResourceManager.GetString("ToolTip_Settings_RestorePosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   起動時に、前回終了時のウィンドウサイズを復元します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ToolTip_Settings_RestoreSize {
+            get {
+                return ResourceManager.GetString("ToolTip_Settings_RestoreSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ボタンなどにマウスを載せたとき操作のヒントを表示します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ToolTip_Settings_ShowToolTip {
+            get {
+                return ResourceManager.GetString("ToolTip_Settings_ShowToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   はい に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Yes {

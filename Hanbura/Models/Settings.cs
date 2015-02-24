@@ -17,7 +17,52 @@ namespace Studiotaiha.Hanbura.Models
 			: base(settings, dispatcher)
 		{ }
 
+
+		#region 動作設定
+		/// <summary>
+		/// 自動でアップデートを確認する。
+		/// </summary>
+		public bool CheckForUpdateAutomatically
+		{
+			get
+			{
+				return GetMe(true);
+			}
+			set
+			{
+				SetMe(value);
+			}
+		}
+
+		/// <summary>
+		/// 終了時に確認する
+		/// </summary>
+		public bool ConfirmShutdown
+		{
+			get
+			{
+				return GetMe(true);
+			}
+			set
+			{
+				SetMe(value);
+			}
+		}
+		#endregion
+
 		#region 表示設定
+		public bool ShowTooltip
+		{
+			get
+			{
+				return GetMe(true);
+			}
+			set
+			{
+				SetMe(value);
+			}
+		}
+
 		/// <summary>
 		/// 処理中画面背景色
 		/// </summary>

@@ -135,12 +135,14 @@
     <Compile Include="ViewModels\Alerts\ContentAlertWindowViewModel.cs" />
     <Compile Include="ViewModels\Alerts\StringAlertWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\SettingsControlViewModel.cs" />
     <Compile Include="Views\Alerts\AlertWindow.xaml.cs">
       <DependentUpon>AlertWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Alerts\StringAlertControl.xaml.cs">
       <DependentUpon>StringAlertControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Behaviors\SaveWindowSettingsBehavior.cs" />
     <Compile Include="Views\Behaviors\WindowMaxSizeBehavior.cs" />
     <Compile Include="Views\Components\SystemButtons.xaml.cs">
       <DependentUpon>SystemButtons.xaml</DependentUpon>

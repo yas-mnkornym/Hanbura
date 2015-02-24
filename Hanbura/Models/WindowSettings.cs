@@ -20,6 +20,17 @@ namespace Studiotaiha.Hanbura.Models
 			: base(settings, dispatcher)
 		{ }
 
+		/// <summary>
+		/// 常に手前に表示する
+		/// </summary>
+		public bool AlwaysOnTop{
+			get{
+				return GetMe(false);
+			}
+			set{
+				SetMe(value);
+			}
+		}
 
 		/// <summary>
 		/// 前回終了時の位置を復元するかどうかを示すフラグ
@@ -35,7 +46,6 @@ namespace Studiotaiha.Hanbura.Models
 				SetMe(value);
 			}
 		}
-
 
 		/// <summary>
 		/// 前回終了時のサイズを復元するかどうかを示すフラグ

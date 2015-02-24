@@ -3,9 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+			 xmlns:models="clr-namespace:Studiotaiha.Hanbura.Models"
+             mc:Ignorable="d">
 	<Grid>
-		<TextBlock>うんこ</TextBlock>
+		<StackPanel>
+			<StackPanel>
+				<!--常に手前に表示する-->
+				<CheckBox Content="{Binding Path=Resources.Settings_AlwaysOnTop, Source={x:Static models:BindableResource.Current}}" 
+						  IsChecked="{Binding Path=MainWindowSettings.AlwaysOnTop, Mode=TwoWay}"
+						  ToolTipService.IsEnabled="{Binding Path=Settings.IsTooltipEnabled}"
+						  ToolTip="{Binding Path=Resources.ToolTip_Settings_AlwaysOnTop, Source={x:Static models:BindableResource.Current}}"/>
+
+				<!--アップデートを自動で確認する-->
+				<CheckBox Content="{Binding Path=Resources.Settings_CheckForUpdateAutomatically, Source={x:Static models:BindableResource.Current}}" 
+						  IsChecked="{Binding Path=Settings.CheckForUpdateAutomatically, Mode=TwoWay}"
+						  ToolTipService.IsEnabled="{Binding Path=Settings.IsTooltipEnabled}"
+						  ToolTip="{Binding Path=Resources.ToolTip_Settings_CheckForUpdateAutomatically, Source={x:Static models:BindableResource.Current}}"/>
+
+				<!--終了時に確認する-->
+				<CheckBox Content="{Binding Path=Resources.Settings_ConfirmShutdown, Source={x:Static models:BindableResource.Current}}" 
+						  IsChecked="{Binding Path=Settings.ConfirmShutdown, Mode=TwoWay}"
+						  ToolTipService.IsEnabled="{Binding Path=Settings.IsTooltipEnabled}"
+						  ToolTip="{Binding Path=Resources.ToolTip_Settings_ConfirmShutdown, Source={x:Static models:BindableResource.Current}}"/>
+			</StackPanel>
+			
+			<!--表示設定-->
+			<GroupBox Header="表示設定">
+				<StackPanel>
+					<!--操作のヒントを表示する-->
+					<CheckBox Content="{Binding Path=Resources.Settings_ShowToolTip, Source={x:Static models:BindableResource.Current}}" 
+						  IsChecked="{Binding Path=Settings.ShowToolTip, Mode=TwoWay}"
+						  ToolTip="{Binding Path=Resources.ToolTip_Settings_ShowToolTip, Source={x:Static models:BindableResource.Current}}"/>
+					
+					<!--前回終了時の位置を復元する-->
+					<CheckBox Content="{Binding Path=Resources.Settings_RestorePosition, Source={x:Static models:BindableResource.Current}}" 
+						  IsChecked="{Binding Path=MainWindowSettings.RestorePosition, Mode=TwoWay}"
+						  ToolTipService.IsEnabled="{Binding Path=Settings.IsTooltipEnabled}"
+						  ToolTip="{Binding Path=Resources.ToolTip_Settings_RestorePosition, Source={x:Static models:BindableResource.Current}}"/>
+
+					<!--前回終了時のサイズを復元する-->
+					<CheckBox Content="{Binding Path=Resources.Settings_RestoreSize, Source={x:Static models:BindableResource.Current}}" 
+						  IsChecked="{Binding Path=MainWindowSettings.RestoreSize, Mode=TwoWay}"
+						  ToolTipService.IsEnabled="{Binding Path=Settings.IsTooltipEnabled}"
+						  ToolTip="{Binding Path=Resources.ToolTip_Settings_RestoreSize, Source={x:Static models:BindableResource.Current}}"/>
+
+					<!--子ウィンドウの追従を有効にする-->
+					<CheckBox Content="{Binding Path=Resources.Settings_EnableChildWindowsTracking, Source={x:Static models:BindableResource.Current}}" 
+						  IsChecked="{Binding Path=Settings.EnableChildWindowTracking, Mode=TwoWay}"
+						  ToolTipService.IsEnabled="{Binding Path=Settings.IsTooltipEnabled}"
+						  ToolTip="{Binding Path=Resources.ToolTip_Settings_EnableChildWindowTracking, Source={x:Static models:BindableResource.Current}}"/>
+
+					<!--子ウィンドウが画面外に出ないようにする-->
+					<CheckBox Content="{Binding Path=Resources.Settings_PreventChildWindowsOutOfScreen, Source={x:Static models:BindableResource.Current}}" 
+						  IsChecked="{Binding Path=Settings.PreventChildWindowsOutOfScreen, Mode=TwoWay}"
+						  ToolTipService.IsEnabled="{Binding Path=Settings.IsTooltipEnabled}"
+						  ToolTip="{Binding Path=Resources.ToolTip_Settings_PreventChildWinodwsOutOfScreen, Source={x:Static models:BindableResource.Current}}"/>
+				</StackPanel>
+				
+				<!-- 雛型 
+				<CheckBox Content="{Binding Path=Resources.Settings_, Source={x:Static models:BindableResource.Current}}" 
+						  IsChecked="{Binding Path=, Mode=TwoWay}"
+						  ToolTipService.IsEnabled="{Binding Path=Settings.IsTooltipEnabled}"
+						  ToolTip="{Binding Path=Resources.ToolTip_Settings_, Source={x:Static models:BindableResource.Current}}"/>
+				-->
+			</GroupBox>
+		</StackPanel>
 	</Grid>
 </UserControl>

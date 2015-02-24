@@ -28,9 +28,18 @@ namespace Studiotaiha.Hanbura.Models.Applications
 
 			// メインウィンドウ初期化
 			logger.Information("メインウィンドウを生成します。");
-			var window = new MainWindow();
-			var vm = new MainWindowViewModel(new WPFDispatcher(window.Dispatcher));
-			window.DataContext = vm;
+			var windowSettings = settings_.GetWindowSettings("MainWindow");
+			var vm = new MainWindowViewModel(new WPFDispatcher(App.Current.Dispatcher)) {
+				Settings = settings_,
+				WindowSettings = windowSettings,
+				SettingsControlVm = new SettingsControlViewModel {
+					Settings = settings_,
+					MainWindowSettings = windowSettings
+				}
+			};
+			var window = new MainWindow() {
+				DataContext = vm
+			};
 
 			// キャプションバーメッセージ変更時の処理
 			var alertManagerImpl = alertManager as AlertManager;
@@ -97,12 +106,30 @@ namespace Studiotaiha.Hanbura.Models.Applications
 		{
 			var settingsImpl = new SettingsImpl("Hanbura", Settings.KnownTypes);
 			settings_ = new Settings(settingsImpl, new WPFDispatcher(App.Current.Dispatcher));
+			var serializer = new DataContractSettingsSerializer();
+			
+			// 設定を読込
+			try {
+				var settingsFilePath = Path.Combine(AppInfo.Current.StartupDirectory, Constants.SettingsFileName);
+				if (File.Exists(settingsFilePath)) {
+					logger.Information("設定を読み込みます。");
+					using (var fs = new FileStream(settingsFilePath, FileMode.Open, FileAccess.Read, FileShare.Read)) {
+						serializer.Deserialize(fs, settingsImpl);
+					}
+				}
+				else {
+					logger.Information("設定ファイルが見つかりませんでした。既定の設定を利用します。");
+				}
+			}
+			catch (Exception ex) {
+				logger.Error("設定の読込に失敗しました。", ex);
+				AlertService.Current.AlertManager.ShowErrorMessage("設定の読込に失敗しました。\nデフォルトの設定を利用します。", ex);
+			}
+
 			settingsAutoExpoter_ = new SettingsAutoExpoter(
 				Path.Combine(AppInfo.Current.StartupDirectory, Constants.SettingsFileName),
 				Path.Combine(AppInfo.Current.StartupDirectory, Constants.SettingsTempFileName),
-				settingsImpl,
-				new DataContractSettingsSerializer(),
-				300);
+				settingsImpl, serializer, 300);
 			settingsAutoExpoter_.Error += (_, args) => {
 				logger.Error("設定の保存に失敗しました。", args.GetException());
 			};
