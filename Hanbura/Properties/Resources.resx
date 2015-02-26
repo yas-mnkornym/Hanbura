@@ -159,6 +159,9 @@
   <data name="Settings_EnableChildWindowsTracking" xml:space="preserve">
     <value>子ウィンドウの追従を有効にする</value>
   </data>
+  <data name="Settings_EnableWindowSnapping" xml:space="preserve">
+    <value>ウィンドウをスナップさせる</value>
+  </data>
   <data name="Settings_PreventChildWindowsOutOfScreen" xml:space="preserve">
     <value>子ウィンドウが画面外にでないようにする</value>
   </data>

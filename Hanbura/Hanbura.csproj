@@ -169,6 +169,9 @@
     <Compile Include="Views\ChildWindow.xaml.cs">
       <DependentUpon>ChildWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ChildWindowSettingsControl.xaml.cs">
+      <DependentUpon>ChildWindowSettingsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Components\SystemButtons.xaml.cs">
       <DependentUpon>SystemButtons.xaml</DependentUpon>
     </Compile>
@@ -251,6 +254,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ChildWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindowSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

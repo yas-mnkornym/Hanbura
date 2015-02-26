@@ -22,7 +22,7 @@
 	<i:Interaction.Behaviors>
 		<behaviors:ConfirmWindowClosingCommandBehavior ClosingCommand="{Binding Path=ClosingCommand}" />
 		<behaviors:SaveWindowSettingsBehavior Settings="{Binding Path=WindowSettings, Mode=OneWay}" />
-		<behaviors:ChildWindowSnapBehavior EnableSnap="{Binding Path=EnableSnap, Mode=OneWay}" />
+		<behaviors:ChildWindowSnapBehavior EnableSnap="{Binding Path=WindowSettings.EnableSnapping, Mode=OneWay}" />
 	</i:Interaction.Behaviors>
 
 	<WindowChrome.WindowChrome>
@@ -72,7 +72,7 @@
 								  Background="{DynamicResource BackgroundBrushKey}" Padding="2"
 								  BorderThickness="0">
 						<StackPanel>
-							<views:SettingsControl DataContext="{Binding Path=ChildWindowSettingsControlVm}" />
+							<views:ChildWindowSettingsControl DataContext="{Binding Path=WindowSettings}" />
 
 							<Border BorderThickness="0,1,0,0" Margin="0,2,0,2"
 									BorderBrush="{DynamicResource BorderBrushKey}"

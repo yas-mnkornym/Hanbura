@@ -157,7 +157,7 @@ namespace Studiotaiha.Hanbura.Models
 		/// <summary>
 		/// ウィンドウを他のウィンドウにスナップするかどうか
 		/// </summary>
-		public bool IsSnappingOn
+		public bool EnableSnapping
 		{
 			get
 			{

@@ -187,6 +187,15 @@ namespace Studiotaiha.Hanbura.Properties {
         }
         
         /// <summary>
+        ///   ウィンドウをスナップさせる に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings_EnableWindowSnapping {
+            get {
+                return ResourceManager.GetString("Settings_EnableWindowSnapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   子ウィンドウが画面外にでないようにする に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Settings_PreventChildWindowsOutOfScreen {
