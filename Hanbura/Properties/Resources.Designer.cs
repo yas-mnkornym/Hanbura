@@ -142,6 +142,15 @@ namespace Studiotaiha.Hanbura.Properties {
         }
         
         /// <summary>
+        ///   設定 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   常に手前に表示する に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Settings_AlwaysOnTop {

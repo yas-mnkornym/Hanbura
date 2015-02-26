@@ -51,8 +51,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCMakeCert">
+      <HintPath>..\packages\FiddlerCore.4.4.8.4\lib\net40\BCMakeCert.dll</HintPath>
+    </Reference>
+    <Reference Include="CertMaker">
+      <HintPath>..\packages\FiddlerCore.4.4.8.4\lib\net40\CertMaker.dll</HintPath>
+    </Reference>
     <Reference Include="CommandLine">
       <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="FiddlerCore4">
+      <HintPath>..\packages\FiddlerCore.4.4.8.4\lib\net40\FiddlerCore4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -114,6 +123,7 @@
     <Compile Include="Common\AppInfo.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\LoggingService.cs" />
+    <Compile Include="DynamicJson.cs" />
     <Compile Include="Models\Common\Alert\AlertManager.cs" />
     <Compile Include="Models\Common\Alert\CaptionMessageChangedEventArgs.cs" />
     <Compile Include="Models\Common\Alert\DialogConfig.cs" />
@@ -127,9 +137,18 @@
     <Compile Include="Models\Common\Settings\DataContractSettingsSerializer.cs" />
     <Compile Include="Models\Common\Settings\ISettingsSerializer.cs" />
     <Compile Include="Models\Common\Settings\SettingsAutoExpoter.cs" />
+    <Compile Include="Models\Game\GameDriver.cs" />
+    <Compile Include="Models\Game\GameProxy.cs" />
+    <Compile Include="Models\Game\ProxySettings.cs" />
+    <Compile Include="Models\Plugins\GamePluginDefinition.cs" />
+    <Compile Include="Models\Plugins\PluginDefinition.cs" />
+    <Compile Include="Models\Plugins\PluginLoader.cs" />
+    <Compile Include="Models\Plugins\PluginManager.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\Common\Settings\SettingsImpl.cs" />
     <Compile Include="Models\WindowSettings.cs" />
+    <Compile Include="Models\Windows\ChildWindow.cs" />
+    <Compile Include="Models\Windows\WindowManager.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\Alerts\AlertWindowViewModelBase.cs" />
     <Compile Include="ViewModels\Alerts\ContentAlertWindowViewModel.cs" />
@@ -142,8 +161,13 @@
     <Compile Include="Views\Alerts\StringAlertControl.xaml.cs">
       <DependentUpon>StringAlertControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Behaviors\ConfirmWindowClosingCommandBehavior.cs" />
     <Compile Include="Views\Behaviors\SaveWindowSettingsBehavior.cs" />
     <Compile Include="Views\Behaviors\WindowMaxSizeBehavior.cs" />
+    <Compile Include="Views\Behaviors\WindowSnapBehavior.cs" />
+    <Compile Include="Views\ChildWindow.xaml.cs">
+      <DependentUpon>ChildWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Components\SystemButtons.xaml.cs">
       <DependentUpon>SystemButtons.xaml</DependentUpon>
     </Compile>
@@ -222,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Alerts\StringAlertControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

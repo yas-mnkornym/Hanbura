@@ -10,7 +10,7 @@
 		xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 		xmlns:behaviors="clr-namespace:Studiotaiha.Hanbura.Views.Behaviors"
 		xmlns:system="clr-namespace:System;assembly=mscorlib"
-		Background="{DynamicResource BackgroundBrushKey}"
+		Background="{DynamicResource WindowCaptionBackgroundBrushKey}"
 		SizeToContent="WidthAndHeight"
         Title="{Binding Path=Resources.ApplicationName, Source={x:Static models:BindableResource.Current}}"
 		StateChanged="Window_StateChanged"
@@ -24,6 +24,7 @@
 	
 	<i:Interaction.Behaviors>
 		<behaviors:SaveWindowSettingsBehavior Settings="{Binding Path=WindowSettings, Mode=OneWay}"/>
+		<behaviors:WindowSnapBehavior />
 	</i:Interaction.Behaviors>
 	
 	<WindowChrome.WindowChrome>
@@ -31,6 +32,7 @@
 					  ResizeBorderThickness="2"
 					  GlassFrameThickness="0"
 					  CornerRadius="0"
+					  UseAeroCaptionButtons="False"
 					  x:Name="windowChrome_"/>
 	</WindowChrome.WindowChrome>
 	
@@ -75,7 +77,7 @@
 								 x:Name="dropDownButton_Scale"
 								 BorderThickness="0">
 				<xctk:DropDownButton.Content>
-					<TextBlock Text="倍率"
+					<TextBlock Text="{Binding Path=Resources.Scale, Source={x:Static models:BindableResource.Current}}"
 							   ToolTipService.IsEnabled="{Binding Settings.ShowToolTip, Mode=OneWay}"
 							   ToolTip="{Binding Path=Resources.ToolTip_Scale, Source={x:Static models:BindableResource.Current}}" />
 				</xctk:DropDownButton.Content>
@@ -129,7 +131,8 @@
 								 BorderThickness="0"
 								 Margin="0,0,5,0">
 				<xctk:DropDownButton.Content>
-					<TextBlock Text="設定" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					<TextBlock Text="{Binding Path=Resources.Settings, Source={x:Static models:BindableResource.Current}}"
+							   VerticalAlignment="Center" HorizontalAlignment="Center" />
 				</xctk:DropDownButton.Content>
 				
 				<xctk:DropDownButton.DropDownContent>

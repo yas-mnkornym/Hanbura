@@ -20,7 +20,6 @@ namespace Studiotaiha.Hanbura.Views.Behaviors
 			set { SetValue(SettingsProperty, value); }
 		}
 
-		// Using a DependencyProperty as the backing store for WindowSettings.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty SettingsProperty =
 			DependencyProperty.Register("Settings", typeof(WindowSettings), typeof(SaveWindowSettingsBehavior), new PropertyMetadata(null));
 

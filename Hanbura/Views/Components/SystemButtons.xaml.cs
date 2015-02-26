@@ -33,7 +33,7 @@ namespace Studiotaiha.Hanbura.Views.Components
 
 		// Using a DependencyProperty as the backing store for CanMinimize.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty CanMinimizeProperty =
-			DependencyProperty.Register("CanMinimize", typeof(bool), typeof(SystemButtons), new PropertyMetadata(true));
+			DependencyProperty.Register("CanMinimize", typeof(bool), typeof(SystemButtons), new PropertyMetadata(true, CanMinimizeChanged));
 
 		public bool CanMaximize
 		{
@@ -43,19 +43,23 @@ namespace Studiotaiha.Hanbura.Views.Components
 
 		// Using a DependencyProperty as the backing store for CanMaximize.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty CanMaximizeProperty =
-			DependencyProperty.Register("CanMaximize", typeof(bool), typeof(SystemButtons), new PropertyMetadata(true));
+			DependencyProperty.Register("CanMaximize", typeof(bool), typeof(SystemButtons), new PropertyMetadata(true, CanMaximizeChanged));
 
 
-		void CanMinimizeChanged(object sender, DependencyPropertyChangedEventArgs e)
+		static void CanMinimizeChanged(object d, DependencyPropertyChangedEventArgs e)
 		{
+			var control = d as SystemButtons;
+			if (control == null) { return; }
 			var isVisible = (bool)e.NewValue;
-			button_Minimize.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+			control.button_Minimize.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
 		}
 
-		void CanMaximizeChanged(object sender, DependencyPropertyChangedEventArgs e)
+		static void CanMaximizeChanged(object d, DependencyPropertyChangedEventArgs e)
 		{
+			var control = d as SystemButtons;
+			if (control == null) { return; }
 			var isVisible = (bool)e.NewValue;
-			button_Maximize.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+			control.button_Maximize.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
 		}
 
 		private void button_Close_Click(object sender, RoutedEventArgs e)

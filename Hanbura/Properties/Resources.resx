@@ -144,6 +144,9 @@
   <data name="Scale" xml:space="preserve">
     <value>倍率</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>設定</value>
+  </data>
   <data name="Settings_AlwaysOnTop" xml:space="preserve">
     <value>常に手前に表示する</value>
   </data>

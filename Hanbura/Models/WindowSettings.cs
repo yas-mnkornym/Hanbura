@@ -136,5 +136,22 @@ namespace Studiotaiha.Hanbura.Models
 				SetMe(value);
 			}
 		}
+
+
+		/// <summary>
+		/// 親ウィンドウから独立しているかどうか
+		/// </summary>
+		/// <remarks>MainWindowでは利用しない</remarks>
+		public bool IsIndependentFromOwner
+		{
+			get
+			{
+				return GetMe(false);
+			}
+			set
+			{
+				SetMe(value);
+			}
+		}
 	}
 }

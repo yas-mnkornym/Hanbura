@@ -6,8 +6,12 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using Codeplex.Data;
 using Studiotaiha.Hanbura.Models.Common.Alert;
 using Studiotaiha.Hanbura.Models.Common.Settings;
+using Studiotaiha.Hanbura.Models.Plugins;
+using Studiotaiha.Hanbura.Models.Windows;
 using Studiotaiha.Hanbura.ViewModels;
 using Studiotaiha.Hanbura.Views;
 
@@ -62,6 +66,28 @@ namespace Studiotaiha.Hanbura.Models.Applications
 			app.MainWindow = window;
 			app.ShutdownMode = System.Windows.ShutdownMode.OnMainWindowClose;
 			app.MainWindow.Show();
+
+
+			// TODO: 最大化時の画面枠を調整する
+			// TODO: ウィンドウのスナップをオン／オフできるようにする
+			// TODO: 子ウィンドウの設定画面を作る
+			var windowManager = new WindowManager(settings_, new WPFDispatcher(App.Current.Dispatcher));
+			var childWindow = windowManager.CreateWindow("Test", new Hanbura.Windows.WindowConfig {
+				IsResizable = true,
+				Caption = "うんこ"
+			});
+
+			childWindow.Creating += (_, e) => {
+				var button = new Button { Content = "ちんこ" };
+				button.Click += async (__, ___) => {
+					childWindow.Hide();
+					await Task.Delay(1000);
+					childWindow.Show();
+				};
+				e.Content = button;
+				e.SettingsContent = "まんこ";
+			};
+			childWindow.Show();
 
 			logger.Information("Hanbura Application起動処理完了");
 		}
