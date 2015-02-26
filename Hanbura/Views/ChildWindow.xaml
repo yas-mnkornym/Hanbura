@@ -22,7 +22,7 @@
 	<i:Interaction.Behaviors>
 		<behaviors:ConfirmWindowClosingCommandBehavior ClosingCommand="{Binding Path=ClosingCommand}" />
 		<behaviors:SaveWindowSettingsBehavior Settings="{Binding Path=WindowSettings, Mode=OneWay}" />
-		<behaviors:WindowSnapBehavior EnableSnap="{Binding Path=EnableSnap, Mode=OneWay}" />
+		<behaviors:ChildWindowSnapBehavior EnableSnap="{Binding Path=EnableSnap, Mode=OneWay}" />
 	</i:Interaction.Behaviors>
 
 	<WindowChrome.WindowChrome>

@@ -164,6 +164,7 @@
     <Compile Include="Views\Behaviors\ConfirmWindowClosingCommandBehavior.cs" />
     <Compile Include="Views\Behaviors\SaveWindowSettingsBehavior.cs" />
     <Compile Include="Views\Behaviors\WindowMaxSizeBehavior.cs" />
+    <Compile Include="Views\Behaviors\ChildWindowSnapBehavior.cs" />
     <Compile Include="Views\Behaviors\WindowSnapBehavior.cs" />
     <Compile Include="Views\ChildWindow.xaml.cs">
       <DependentUpon>ChildWindow.xaml</DependentUpon>

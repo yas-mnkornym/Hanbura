@@ -153,5 +153,20 @@ namespace Studiotaiha.Hanbura.Models
 				SetMe(value);
 			}
 		}
+
+		/// <summary>
+		/// ウィンドウを他のウィンドウにスナップするかどうか
+		/// </summary>
+		public bool IsSnappingOn
+		{
+			get
+			{
+				return GetMe(true);
+			}
+			set
+			{
+				SetMe(value);
+			}
+		}
 	}
 }
