@@ -171,7 +171,7 @@ namespace Studiotaiha.Hanbura.Models
 
 		public bool TrackOwner{
 			get{
-				return GetMe(false);
+				return GetMe(true);
 			}
 			set{
 				SetMe(value);
