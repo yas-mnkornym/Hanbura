@@ -196,6 +196,24 @@ namespace Studiotaiha.Hanbura.Properties {
         }
         
         /// <summary>
+        ///   親ウィンドウから独立する に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings_IndependFromOwner {
+            get {
+                return ResourceManager.GetString("Settings_IndependFromOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   不透明度 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings_Opacity {
+            get {
+                return ResourceManager.GetString("Settings_Opacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   子ウィンドウが画面外にでないようにする に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Settings_PreventChildWindowsOutOfScreen {
@@ -205,7 +223,7 @@ namespace Studiotaiha.Hanbura.Properties {
         }
         
         /// <summary>
-        ///   前回終了時の位置を記憶する に類似しているローカライズされた文字列を検索します。
+        ///   前回終了時の位置を復元する に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Settings_RestorePosition {
             get {
@@ -228,6 +246,15 @@ namespace Studiotaiha.Hanbura.Properties {
         public static string Settings_ShowToolTip {
             get {
                 return ResourceManager.GetString("Settings_ShowToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   親ウィンドウに追従する に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Settings_TrackOwnerWindow {
+            get {
+                return ResourceManager.GetString("Settings_TrackOwnerWindow", resourceCulture);
             }
         }
         

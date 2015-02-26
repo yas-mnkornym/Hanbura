@@ -162,17 +162,26 @@
   <data name="Settings_EnableWindowSnapping" xml:space="preserve">
     <value>ウィンドウをスナップさせる</value>
   </data>
+  <data name="Settings_IndependFromOwner" xml:space="preserve">
+    <value>親ウィンドウから独立する</value>
+  </data>
+  <data name="Settings_Opacity" xml:space="preserve">
+    <value>不透明度</value>
+  </data>
   <data name="Settings_PreventChildWindowsOutOfScreen" xml:space="preserve">
     <value>子ウィンドウが画面外にでないようにする</value>
   </data>
   <data name="Settings_RestorePosition" xml:space="preserve">
-    <value>前回終了時の位置を記憶する</value>
+    <value>前回終了時の位置を復元する</value>
   </data>
   <data name="Settings_RestoreSize" xml:space="preserve">
     <value>前回終了時のサイズを復元する</value>
   </data>
   <data name="Settings_ShowToolTip" xml:space="preserve">
     <value>操作のヒントを表示する</value>
+  </data>
+  <data name="Settings_TrackOwnerWindow" xml:space="preserve">
+    <value>親ウィンドウに追従する</value>
   </data>
   <data name="ToolTip_Scale" xml:space="preserve">
     <value>表示倍率を変更します。</value>

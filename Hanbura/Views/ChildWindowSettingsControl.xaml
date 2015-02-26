@@ -3,14 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:conv="clr-namespace:Studiotaiha.Hanbura.Views.Converters"
 			 xmlns:models="clr-namespace:Studiotaiha.Hanbura.Models"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+	<UserControl.Resources>
+		<conv:BoolVisibilityConverter x:Key="TrueVisibleConverter" />
+	</UserControl.Resources>
     <Grid>
 		<StackPanel>
+			<!--常に手前に表示する-->
+			<CheckBox Content="{Binding Path=Resources.Settings_AlwaysOnTop, Source={x:Static models:BindableResource.Current}}"
+					  IsChecked="{Binding Path=WindowSettings.AlwaysOnTop, Mode=TwoWay}" />
+			
+			<!--ウィンドウをスナップさせる-->
 			<CheckBox Content="{Binding Path=Resources.Settings_EnableWindowSnapping, Source={x:Static models:BindableResource.Current}}"
-					  IsChecked="{Binding Path=EnableSnapping, Mode=TwoWay}" />
-					  
+					  IsChecked="{Binding Path=WindowSettings.EnableSnapping, Mode=TwoWay}" />
+			
+			<!--親ウィンドウから独立する-->
+			<CheckBox Content="{Binding Path=Resources.Settings_IndependFromOwner, Source={x:Static models:BindableResource.Current}}"
+					  IsChecked="{Binding Path=WindowSettings.IsIndependentFromOwner, Mode=TwoWay}" />
+					 
+			<!--親ウィンドウに追従する-->
+			<CheckBox Content="{Binding Path=Resources.Settings_TrackOwnerWindow, Source={x:Static models:BindableResource.Current}}"
+					  IsChecked="{Binding Path=WindowSettings.TrackOwner, Mode=TwoWay}" />
+			
+			<!--前回終了時の位置を復元する-->
+			<CheckBox Content="{Binding Path=Resources.Settings_RestorePosition, Source={x:Static models:BindableResource.Current}}"
+					  IsChecked="{Binding Path=WindowSettings.RestorePosition, Mode=TwoWay}" />
+			
+			<!--前回終了時のサイズを復元する-->
+			<CheckBox Content="{Binding Path=Resources.Settings_RestoreSize, Source={x:Static models:BindableResource.Current}}"
+					  IsChecked="{Binding Path=WindowSettings.RestoreSize, Mode=TwoWay}" />
+			
+			<!--不透明度-->
+			<Grid Visibility="{Binding Path=AllowsTransparency, Converter={StaticResource TrueVisibleConverter}}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+				<TextBlock Grid.Column="0" Text="{Binding Path=Resources.Settings_Opacity, Source={x:Static models:BindableResource.Current}}" />
+				<Slider Grid.Column="1" Minimum="0.1" Maximum="1.0" SmallChange="0.01" LargeChange="0.1" 
+						Value="{Binding Path=WindowSettings.Opacity, Mode=TwoWay}"/>
+				<TextBox Grid.Column="2" IsReadOnly="true"
+						 Text="{Binding Path=WindowSettings.Opacity, Mode=OneWay, StringFormat={}{0:P0}}" />
+			</Grid>
 		</StackPanel>
     </Grid>
 </UserControl>

@@ -40,5 +40,23 @@ namespace Studiotaiha.Hanbura.Views
 				}), System.Windows.Threading.DispatcherPriority.Loaded);
 			}
 		}
+
+		private void Window_StateChanged(object sender, EventArgs e)
+		{
+			// TODO: AllowsTransparency=trueの時、キャプションバーをダブルクリックで最大化するとおかしくなるの誰かなんとかして
+
+			// マージンを調整
+			if (WindowState == System.Windows.WindowState.Maximized) {
+				// 最大化時この分だけ削られてしまうのでその対策
+				var systemDefault = SystemParameters.WindowResizeBorderThickness;
+				panelMain_.Margin = new Thickness(systemDefault.Left * 2, systemDefault.Top * 2, systemDefault.Right * 2, systemDefault.Bottom * 2);
+				contentWrap_.BorderThickness = new Thickness(0.0);
+				WindowState = System.Windows.WindowState.Maximized;
+			}
+			else {
+				panelMain_.Margin = new Thickness(0.0);
+				contentWrap_.BorderThickness = new Thickness(2.0, 0.0, 2.0, 2.0);
+			}
+		}
 	}
 }

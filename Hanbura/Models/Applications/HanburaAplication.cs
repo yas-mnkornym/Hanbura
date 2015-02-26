@@ -67,24 +67,27 @@ namespace Studiotaiha.Hanbura.Models.Applications
 			app.ShutdownMode = System.Windows.ShutdownMode.OnMainWindowClose;
 			app.MainWindow.Show();
 
-
-			// TODO: 最大化時の画面枠を調整する
-			// TODO: ウィンドウのスナップをオン／オフできるようにする
 			// TODO: 子ウィンドウの設定画面を作る
 			var windowManager = new WindowManager(settings_, new WPFDispatcher(App.Current.Dispatcher));
 			var childWindow = windowManager.CreateWindow("Test", new Hanbura.Windows.WindowConfig {
 				IsResizable = true,
+				AllowsTransparency = true,
 				Caption = "うんこ"
 			});
 
 			childWindow.Creating += (_, e) => {
-				var button = new Button { Content = "ちんこ" };
-				button.Click += async (__, ___) => {
-					childWindow.Hide();
-					await Task.Delay(1000);
-					childWindow.Show();
+				//var button = new Button { Content = "ちんこ" };
+				//button.Click += async (__, ___) => {
+				//	childWindow.Hide();
+				//	await Task.Delay(1000);
+				//	childWindow.Show();
+				//};
+				//e.Content = button;
+				var rect = new Border {
+					Background = System.Windows.Media.Brushes.Red,
+					Margin = new System.Windows.Thickness(0.0)
 				};
-				e.Content = button;
+				e.Content = rect;
 				e.SettingsContent = "まんこ";
 			};
 			childWindow.Show();

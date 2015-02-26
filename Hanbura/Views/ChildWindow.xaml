@@ -11,10 +11,12 @@
 		xmlns:behaviors="clr-namespace:Studiotaiha.Hanbura.Views.Behaviors"
 		SizeToContent="{Binding Path=SizeToContent, Mode=OneWay}"
 		Title="{Binding Path=Caption, Mode=OneWay}"
-		Topmost="{Binding Path=TopMost, Mode=OneWay}"
-		Opacity="{Binding Path=Opacity, Mode=OneWay}"
+		Topmost="{Binding Path=WindowSettings.AlwaysOnTop, Mode=OneWay}"
+		Opacity="{Binding Path=WindowSettings.Opacity, Mode=OneWay}"
 		MinWidth="20" MinHeight="20"
-		Background="{DynamicResource BackgroundBrushKey}">
+		Background="{DynamicResource BackgroundBrushKey}"
+		StateChanged="Window_StateChanged"
+		Name="window_">
 	<Window.Resources>
 		<conv:NullVisibilityConverter x:Key="NullCollapseVisibility" />
 	</Window.Resources>
@@ -23,11 +25,13 @@
 		<behaviors:ConfirmWindowClosingCommandBehavior ClosingCommand="{Binding Path=ClosingCommand}" />
 		<behaviors:SaveWindowSettingsBehavior Settings="{Binding Path=WindowSettings, Mode=OneWay}" />
 		<behaviors:ChildWindowSnapBehavior EnableSnap="{Binding Path=WindowSettings.EnableSnapping, Mode=OneWay}" />
+		<behaviors:OwnerWindowTrackingBehavior Owner="{Binding Path=ActualOwnerWindow, Mode=OneWay}"
+											   IsEnabled="{Binding Path=WindowSettings.TrackOwner}" />
 	</i:Interaction.Behaviors>
 
 	<WindowChrome.WindowChrome>
 		<WindowChrome CaptionHeight="{x:Static SystemParameters.CaptionHeight}"
-					  ResizeBorderThickness="2"
+					  ResizeBorderThickness="2.0"
 					  GlassFrameThickness="0"
 					  CornerRadius="0"
 					  UseAeroCaptionButtons="False"
@@ -72,7 +76,7 @@
 								  Background="{DynamicResource BackgroundBrushKey}" Padding="2"
 								  BorderThickness="0">
 						<StackPanel>
-							<views:ChildWindowSettingsControl DataContext="{Binding Path=WindowSettings}" />
+							<views:ChildWindowSettingsControl DataContext="{Binding}"/>
 
 							<Border BorderThickness="0,1,0,0" Margin="0,2,0,2"
 									BorderBrush="{DynamicResource BorderBrushKey}"
@@ -95,6 +99,7 @@
 		<!-- コンテンツ -->
 		<Border Grid.Row="1" BorderBrush="{DynamicResource WindowBorderBrushKey}"
 				BorderThickness="2,0,2,2"
+				x:Name="contentWrap_"
 				Background="{DynamicResource BackgroundBrushKey}">
 			<ContentControl Content="{Binding Path=Content}" />
 		</Border>

@@ -168,5 +168,26 @@ namespace Studiotaiha.Hanbura.Models
 				SetMe(value);
 			}
 		}
+
+		public bool TrackOwner{
+			get{
+				return GetMe(false);
+			}
+			set{
+				SetMe(value);
+			}
+		}
+
+		public double Opacity
+		{
+			get
+			{
+				return GetMe(1.0);
+			}
+			set
+			{
+				SetMe(value);
+			}
+		}
 	}
 }

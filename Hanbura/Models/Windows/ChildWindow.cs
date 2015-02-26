@@ -12,7 +12,6 @@ namespace Studiotaiha.Hanbura.Models.Windows
 	internal sealed class ChildWindow : BindableBase, IWindow
 	{
 		IWindow owner_;
-		Window ownerWindow_;
 		Window window_;
 		WindowConfig config_;
 		bool shouldntDenyClosing_ = true;
@@ -35,6 +34,7 @@ namespace Studiotaiha.Hanbura.Models.Windows
 			CanBeMaximized = config.CanBeMaximized;
 			CanBeIndependentFromOwner = config.CanBeIndependentFromOwner;
 			Caption = config.Caption;
+			AllowsTransparency = config_.AllowsTransparency;
 
 			// ここまでの処理はUIスレッドに移られると逆に困る
 			Dispatcher = dispatcher;
@@ -65,13 +65,18 @@ namespace Studiotaiha.Hanbura.Models.Windows
 				Left = config_.DefaultLeft,
 				Top = config_.DefaultTop,
 				ResizeMode = config_.IsResizable ? ResizeMode.CanResize : ResizeMode.NoResize,
-				Owner = WindowSettings.IsIndependentFromOwner ? null : ownerWindow_,
+				Owner = WindowSettings.IsIndependentFromOwner ? null : OwnerWindow,
 				DataContext = this,
 			};
 
-			if (config_.AllowsTransparency) {
+			if (!WindowSettings.IsIndependentFromOwner) {
+				ActualOwnerWindow = OwnerWindow;
+			}
+
+			if (AllowsTransparency) {
 				window_.WindowStyle = WindowStyle.None;
 				window_.AllowsTransparency = true;
+				WindowSettings.Opacity = 1.0;
 			}
 
 			// リサイズモードに応じて設定変更
@@ -110,22 +115,36 @@ namespace Studiotaiha.Hanbura.Models.Windows
 			if (e.PropertyName == GetMemberName(() => WindowSettings.IsIndependentFromOwner)) {
 				if (WindowSettings.IsIndependentFromOwner) {
 					window_.Owner = null;
+					ActualOwnerWindow = null;
 				}
 				else {
-					window_.Owner = ownerWindow_;
+					window_.Owner = OwnerWindow;
+					ActualOwnerWindow = OwnerWindow;
 				}
+			}
+			else if (e.PropertyName == GetMemberName(() => WindowSettings.AlwaysOnTop)) {
+				RaisePropertyChanged(e.PropertyName);
+			}
+			else if (e.PropertyName == GetMemberName(() => WindowSettings.Opacity)) {
+				RaisePropertyChanged(e.PropertyName);
 			}
 		}
 
 		public void SetOwner(ChildWindow owner)
 		{
 			if (owner == null) { throw new ArgumentNullException("owner"); }
-			ownerWindow_ = owner.window_;
+			OwnerWindow = owner.OwnerWindow;
+			if (!WindowSettings.IsIndependentFromOwner) {
+				ActualOwnerWindow = OwnerWindow;
+			}
 		}
 
 		public void SetOwner(Window window)
 		{
-			ownerWindow_ = window;
+			OwnerWindow = window;
+			if (!WindowSettings.IsIndependentFromOwner) {
+				ActualOwnerWindow = OwnerWindow;
+			}
 		}
 
 		#endregion
@@ -284,6 +303,51 @@ namespace Studiotaiha.Hanbura.Models.Windows
 		#endregion
 
 		#region 変更通知プロパティ
+		#region AllowsTransparency
+		bool allowsTransparency_ = false;
+		public bool AllowsTransparency
+		{
+			get
+			{
+				return allowsTransparency_;
+			}
+			set
+			{
+				SetValue(ref allowsTransparency_, value);
+			}
+		}
+		#endregion // AllowsTransparency
+
+		#region OwnerWindow
+		Window ownerWindow_;
+		public Window OwnerWindow
+		{
+			get
+			{
+				return ownerWindow_;
+			}
+			set
+			{
+				SetValue(ref ownerWindow_, value);
+			}
+		}
+		#endregion
+
+		#region ActualOwnerWindow
+		Window actualOwnerWindow_;
+		public Window ActualOwnerWindow
+		{
+			get
+			{
+				return actualOwnerWindow_;
+			}
+			set
+			{
+				SetValue(ref actualOwnerWindow_, value);
+			}
+		}
+		#endregion
+
 		#region WindowSettings
 		WindowSettings windowSettings_;
 		public WindowSettings WindowSettings
@@ -346,16 +410,15 @@ namespace Studiotaiha.Hanbura.Models.Windows
 		#endregion
 
 		#region Opacity
-		double opacity_ = 1.0;
 		public double Opacity
 		{
 			get
 			{
-				return opacity_;
+				return WindowSettings.Opacity;
 			}
 			set
 			{
-				SetValue(ref opacity_, value);
+				WindowSettings.Opacity = value;
 			}
 		}
 		#endregion

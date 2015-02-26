@@ -162,6 +162,7 @@
       <DependentUpon>StringAlertControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Behaviors\ConfirmWindowClosingCommandBehavior.cs" />
+    <Compile Include="Views\Behaviors\OwnerWindowTrackingBehavior.cs" />
     <Compile Include="Views\Behaviors\SaveWindowSettingsBehavior.cs" />
     <Compile Include="Views\Behaviors\WindowMaxSizeBehavior.cs" />
     <Compile Include="Views\Behaviors\ChildWindowSnapBehavior.cs" />
@@ -177,6 +178,7 @@
     </Compile>
     <Compile Include="Views\Converters\AlertTypeBrushConverter.cs" />
     <Compile Include="Views\Converters\AlertTypeIconConverter.cs" />
+    <Compile Include="Views\Converters\BoolVisibilityConverter.cs" />
     <Compile Include="Views\Converters\CaptionMessageKindBrushConverter.cs" />
     <Compile Include="Views\Converters\ColorSolidBrushConverter.cs" />
     <Compile Include="Views\Converters\NullVisibilityConverter.cs" />
