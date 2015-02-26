@@ -169,6 +169,9 @@ namespace Studiotaiha.Hanbura.Models
 			}
 		}
 
+		/// <summary>
+		/// 親ウィンドウに追従する
+		/// </summary>
 		public bool TrackOwner{
 			get{
 				return GetMe(true);
@@ -178,6 +181,9 @@ namespace Studiotaiha.Hanbura.Models
 			}
 		}
 
+		/// <summary>
+		/// 不透明度
+		/// </summary>
 		public double Opacity
 		{
 			get
