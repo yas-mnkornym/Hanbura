@@ -64,23 +64,24 @@ namespace Studiotaiha.Hanbura.Views.Behaviors
 				var scaledSize = scaledBottomRight - scaledTopLeft;
 
 				var screen = System.Windows.Forms.Screen.FromPoint(new System.Drawing.Point((int)scaledTopLeft.X, (int)scaledTopLeft.Y));
+				var bounds = screen.WorkingArea;
 				var newTop = scaledTopLeft.Y;
 				var newLeft = scaledTopLeft.X;
 
 				// 横方向の調整
-				if (Math.Abs(screen.Bounds.Left - scaledTopLeft.X) <= scaledSnapDisatance.X) {
-					newLeft = screen.Bounds.Left;
+				if (Math.Abs(bounds.Left - scaledTopLeft.X) <= scaledSnapDisatance.X) {
+					newLeft = bounds.Left;
 				}
-				else if (Math.Abs(screen.Bounds.Right - scaledBottomRight.X) <= scaledSnapDisatance.X) {
-					newLeft = screen.Bounds.Right - scaledSize.X;
+				else if (Math.Abs(bounds.Right - scaledBottomRight.X) <= scaledSnapDisatance.X) {
+					newLeft = bounds.Right - scaledSize.X;
 				}
 
 				// 縦方向の調整
-				if (Math.Abs(screen.Bounds.Top - scaledTopLeft.Y) <= scaledSnapDisatance.Y) {
-					newTop = screen.Bounds.Top;
+				if (Math.Abs(bounds.Top - scaledTopLeft.Y) <= scaledSnapDisatance.Y) {
+					newTop = bounds.Top;
 				}
-				else if (Math.Abs(screen.Bounds.Bottom - scaledBottomRight.Y) <= scaledSnapDisatance.Y) {
-					newTop = screen.Bounds.Bottom - scaledSize.Y;
+				else if (Math.Abs(bounds.Bottom - scaledBottomRight.Y) <= scaledSnapDisatance.Y) {
+					newTop = bounds.Bottom - scaledSize.Y;
 				}
 
 				window.Left = newLeft;
