@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<!-- Common Brushes -->
+	<SolidColorBrush x:Key="WindowBorderBrushKey" Color="#2D2D30" />
+	<SolidColorBrush x:Key="WindowCaptionBackgroundBrushKey" Color="#2D2D30" />
+	<SolidColorBrush x:Key="BackgroundBrushKey" Color="#1E1E1E" />
+	<SolidColorBrush x:Key="ForegroundBrushKey" Color="White" />
+	<SolidColorBrush x:Key="DisabledForegroundBrushKey" Color="#AAAAAA" />
+	<SolidColorBrush x:Key="AccentBrushKey" Color="Gray" />
+	<SolidColorBrush x:Key="BorderBrushKey" Color="White" />
+	
+	<!-- Brushes for MainWindow -->
+	<SolidColorBrush x:Key="CaptionMessageWarningBrushKey" Color="DarkRed" />
+	<SolidColorBrush x:Key="CaptionMessageInformationBrushKey" Color="DarkBlue" />
+
+
+	<!-- Brushes for Buttons -->
+	<SolidColorBrush x:Key="ButtonBorderBrushKey" Color="White" />
+
+	<!-- Brushes for AlertWindow -->
+	<SolidColorBrush x:Key="AlertWindowButtonsBackgroundBrushKey" Color="Transparent" />
+	<SolidColorBrush x:Key="AlertWindowExceptionBackgroundBrushKey" Color="DarkGoldenrod" />
+	<SolidColorBrush x:Key="AlertWindowExceptionForegroundBrushKey" Color="Black" />
+	<SolidColorBrush x:Key="AlertWindowBorderBrushKey" Color="#007acc" />
+	<SolidColorBrush x:Key="DefaultAlertBrushKey" Color="Gray" />
+	<SolidColorBrush x:Key="DebugAlertBrushKey" Color="DarkGreen" />
+	<SolidColorBrush x:Key="InformationAlertBrushKey" Color="Gray" />
+	<SolidColorBrush x:Key="ExclamationAlertBrushKey" Color="Gold" />
+	<SolidColorBrush x:Key="WarningAlertBrushKey" Color="DarkOrange" />
+	<SolidColorBrush x:Key="ErrorAlertBrushKey" Color="DarkRed" />
+	<SolidColorBrush x:Key="QuestionAlertBrushKey" Color="DarkSlateBlue" />
+</ResourceDictionary>

@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Style TargetType="{x:Type Button}" BasedOn="{x:Null}">
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource SimpleButtonFocusVisual}"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrushKey}"/>
+		<Setter Property="BorderThickness"  Value="1" />
+		<Setter Property="Padding" Value="1,0,1,0" />
+		<Setter Property="Margin" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+
+					<!-- グリッドは、より多くの要素を追加して簡単にボタンをカスタマイズできるため、ルートとして使用します -->
+					<Grid x:Name="Grid">
+						<Border x:Name="border" BorderBrush="{x:Null}" BorderThickness="1" HorizontalAlignment="Stretch" Height="Auto"
+								VerticalAlignment="Stretch" Width="Auto" Margin="{TemplateBinding BorderThickness}" Padding="1"/>
+						
+						<Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+											  RecognizesAccessKey="True" Margin="0"/>
+						</Border>
+						<!-- テンプレートを編集せずにコントロールをパラメーター化できるため、バインドが役立ちます -->
+					</Grid>
+
+					<!--各状態では、テンプレートの枠線にブラシが設定されます -->
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsKeyboardFocused" Value="true">
+							<Setter Property="BorderBrush" Value="{DynamicResource DefaultedBorderBrush}" TargetName="Border"/>
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="Background" TargetName="border" Value="{DynamicResource AccentBrushKey}"/>
+						</Trigger>
+						<Trigger Property="IsPressed" Value="true">
+							<Setter Property="BorderBrush" Value="{DynamicResource PressedBorderBrush}" TargetName="Border"/>
+							<Setter Property="Background" TargetName="Border" Value="{DynamicResource AccentBrushKey}"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="true"/>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Opacity" TargetName="Grid" Value="0.4"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

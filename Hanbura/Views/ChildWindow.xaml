@@ -1,0 +1,107 @@
+﻿<Window x:Class="Studiotaiha.Hanbura.Views.ChildWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:models="clr-namespace:Studiotaiha.Hanbura.Models"
+		xmlns:prop="clr-namespace:Studiotaiha.Hanbura.Properties"
+		xmlns:components="clr-namespace:Studiotaiha.Hanbura.Views.Components"
+		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+		xmlns:views="clr-namespace:Studiotaiha.Hanbura.Views"
+		xmlns:conv="clr-namespace:Studiotaiha.Hanbura.Views.Converters"
+		xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+		xmlns:behaviors="clr-namespace:Studiotaiha.Hanbura.Views.Behaviors"
+		SizeToContent="{Binding Path=SizeToContent, Mode=OneWay}"
+		Title="{Binding Path=Caption, Mode=OneWay}"
+		Topmost="{Binding Path=WindowSettings.AlwaysOnTop, Mode=OneWay}"
+		Opacity="{Binding Path=WindowSettings.Opacity, Mode=OneWay}"
+		MinWidth="20" MinHeight="20"
+		Background="{DynamicResource BackgroundBrushKey}"
+		StateChanged="Window_StateChanged"
+		Name="window_">
+	<Window.Resources>
+		<conv:NullVisibilityConverter x:Key="NullCollapseVisibility" />
+	</Window.Resources>
+	
+	<i:Interaction.Behaviors>
+		<behaviors:ConfirmWindowClosingCommandBehavior ClosingCommand="{Binding Path=ClosingCommand}" />
+		<behaviors:SaveWindowSettingsBehavior Settings="{Binding Path=WindowSettings, Mode=OneWay}" />
+		<behaviors:ChildWindowSnapBehavior EnableSnap="{Binding Path=WindowSettings.EnableSnapping, Mode=OneWay}" />
+		<behaviors:OwnerWindowTrackingBehavior Owner="{Binding Path=ActualOwnerWindow, Mode=OneWay}"
+											   IsEnabled="{Binding Path=WindowSettings.TrackOwner}" />
+	</i:Interaction.Behaviors>
+
+	<WindowChrome.WindowChrome>
+		<WindowChrome CaptionHeight="{x:Static SystemParameters.CaptionHeight}"
+					  ResizeBorderThickness="2.0"
+					  GlassFrameThickness="0"
+					  CornerRadius="0"
+					  UseAeroCaptionButtons="False"
+					  x:Name="windowChrome_"/>
+	</WindowChrome.WindowChrome>
+
+
+	<Grid x:Name="panelMain_">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<!--キャプション-->
+		<Grid Grid.Row="0" Height="{x:Static SystemParameters.CaptionHeight}" Background="{DynamicResource WindowCaptionBackgroundBrushKey}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<!--ウィンドウタイトル-->
+			<TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="2,0,0,0">
+				<Run Text="{Binding Path=Caption, Mode=OneWay}" />
+				<Run>-</Run>
+				<Run Text="{Binding Path=Resources.ApplicationName, Source={x:Static models:BindableResource.Current}, Mode=OneWay}" />
+			</TextBlock>
+
+			<!-- 設定ボタン -->
+			<xctk:DropDownButton Grid.Column="1" VerticalAlignment="Center"
+								 WindowChrome.IsHitTestVisibleInChrome="True"
+								 BorderThickness="0"
+								 BorderBrush="{DynamicResource WindowBorderBrushKey}"
+								 Margin="0,0,5,0">
+				<xctk:DropDownButton.Content>
+					<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" />
+				</xctk:DropDownButton.Content>
+
+				<xctk:DropDownButton.DropDownContent>
+					<ScrollViewer VerticalScrollBarVisibility="Auto"
+								  HorizontalScrollBarVisibility="Auto"
+								  Background="{DynamicResource BackgroundBrushKey}" Padding="2"
+								  BorderThickness="0">
+						<StackPanel>
+							<views:ChildWindowSettingsControl DataContext="{Binding}"/>
+
+							<Border BorderThickness="0,1,0,0" Margin="0,2,0,2"
+									BorderBrush="{DynamicResource BorderBrushKey}"
+									Visibility="{Binding Path=SettingsContent, Converter={StaticResource NullCollapseVisibility}}" />
+							
+							<ContentControl Content="{Binding Path=SettingsContent}" />
+						</StackPanel>
+					</ScrollViewer>
+				</xctk:DropDownButton.DropDownContent>
+			</xctk:DropDownButton>
+
+			<!-- システムボタン -->
+			<components:SystemButtons Grid.Column="2" VerticalAlignment="Center"
+									  WindowChrome.IsHitTestVisibleInChrome="True"
+									  SnapsToDevicePixels="True"
+									  CanMinimize="{Binding Path=CanBeMinimized, Mode=OneWay}"
+									  CanMaximize="{Binding Path=CanBeMaximized, Mode=OneWay}" />
+		</Grid>
+		
+		<!-- コンテンツ -->
+		<Border Grid.Row="1" BorderBrush="{DynamicResource WindowBorderBrushKey}"
+				BorderThickness="2,0,2,2"
+				x:Name="contentWrap_"
+				Background="{DynamicResource BackgroundBrushKey}">
+			<ContentControl Content="{Binding Path=Content}" />
+		</Border>
+	</Grid>
+</Window>
